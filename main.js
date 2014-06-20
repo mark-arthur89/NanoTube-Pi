@@ -1,8 +1,10 @@
 /* Import Modules */
 
 var http = require('http');
+var url = require("url");
 var fs = require('fs');
 var socketIO = require('socket.io'); 
+var routes = require("./Routes");
 
 /* Start Server */
 var io;
@@ -18,16 +20,12 @@ StartServer();
     Callback method for http.createServer()
 */
 function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
 
-    res.writeHead(200);
-    res.end(data); 
-  });
+	var pathname = url.parse(req.url).pathname;	
+	// call route func
+	var httpContext = { req : req, res : res, pathname : pathname };
+	
+	routes.route(httpContext);
 }
 
 /*
