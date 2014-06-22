@@ -5,6 +5,7 @@ var url = require("url");
 var fs = require('fs');
 var socketIO = require('socket.io'); 
 var routes = require("./Routes");
+var socketController = require("./SocketsController");
 
 /* Start Server */
 var io;
@@ -23,7 +24,7 @@ function handler (req, res) {
 
 	var pathname = url.parse(req.url).pathname;	
 	// call route func
-	var httpContext = { req : req, res : res, pathname : pathname };
+	var httpContext = { req : req, res : res, pathname : pathname, io : io };
 	
 	routes.route(httpContext);
 }
@@ -39,20 +40,4 @@ function StartServer(){
 
 
 // Socket Helpers
-
-/* 
-  On Connection Establish Event
-*/
-io.on('connection', function (socket) {
-
-  // Emit's an event
-  socket.emit('news', { hello: 'world' });
-
-  // Receives an event
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-
-  // broadcast an event
-
-});
+socketController.OnSocketConnection(io);

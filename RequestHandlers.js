@@ -1,6 +1,11 @@
 var http = require("http");
 var fs = require('fs');
+var socketController = require("./SocketsController");
 
+
+// Variables
+
+// A sample request handler
 function first(httpcontext){
 	// return 'first function';
 	var request = httpcontext.req;
@@ -12,17 +17,7 @@ function first(httpcontext){
 	response.end();
 }
 
-function second(httpcontext) {
-	
-	var request = httpcontext.req;
-	var response = httpcontext.res;
-
-	//return 'second function' + value;
-	response.writeHead(200, {"Content-Type": "text/html"});
-	response.write("In Second Function");
-	response.end();
-}
-
+// Loads the initial page request handler
 function index(httpcontext) {
 	
 	var request = httpcontext.req;
@@ -42,5 +37,4 @@ function index(httpcontext) {
 }
 
 exports.first = first;
-exports.second = second;
 exports.index = index;
