@@ -13,6 +13,8 @@ function route(httpcontext) {
 
 	if (typeof handle[pathname] === 'function') {
 		handle[pathname](httpcontext);
+	} else if( pathname.indexOf('web/') > 0 ) {
+		requestHandlers.static(httpcontext);
 	} else {
 		console.log('no func avail');
 	}

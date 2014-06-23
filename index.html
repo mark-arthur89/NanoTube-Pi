@@ -5,44 +5,16 @@
 </head>
 
 <body>
+
+	<p id="socket-open">  Open Socket Connection with server - click me </p>
+
+
+	<p id="socket-close">  Close socket - click here </p>
+
+
 	<script src="https://cdn.socket.io/socket.io-1.0.4.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"> </script>
-	<script>
-	  
-
-	  function socket() {
-
-	  		console.log('On click');
-
-	  		var socket = io('http://localhost');
-
-			  socket.on('news', function (data) {
-			    console.log(data);
-			    // socket.emit('my other event', { my: 'data' });
-			  });
-
-
-			  socket.on('start', function (data) {
-			    console.log(data);
-			    // socket.emit('my other event', { my: 'data' });
-			  });
-
-	  }
-
-
-	  function close() {
-
-	  		// Close socket connection
-
-	  }
-
-	</script>
-
-
-	<p id="socket-open" onclick="socket()" >  Open Socket Connection with server - click me </p>
-
-
-	<p id="socket-close" onclick="close()" > </p>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"> </script>
+	<script src="web/Scripts/main.js"> </script>
 
 </body>
 
