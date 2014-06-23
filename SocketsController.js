@@ -5,7 +5,7 @@ function OnSocketConnection(io) {
 
 	io.on('connection', function (socket) {
 	  // Emit's an event
-	  socket.emit('news', { info: 'Connection Established with client' });
+	  socket.emit('connection-set', { info: 'Connection Established with client' });
 
 	  // Receives an event
 	  socket.on('my other event', function (data) {
@@ -16,15 +16,18 @@ function OnSocketConnection(io) {
 	  // TODO : Place the GPIO Connection open PIN
 	  socket.on('start-game', function(data) {
 
+	  	console.log('Game Started');
 	  	// Open GPIO pin 
 
 	  	// broadcast count value back to the client
+	  	socket.emit('shock', { value : '' });
 
 	  });
 
 	  // Reset Counter :
-	  socket.on('reset', function(data) {
+	  socket.on('reset-game', function(data) {
 
+	  	console.log('Game Reset');
 	  	// Reset the counter value
 
 	  });

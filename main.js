@@ -36,6 +36,9 @@ function StartServer(){
   var app = http.createServer(handler);
   io = socketIO(app);
   app.listen(8888);
+
+  console.log('Server has been started on port 8888');
+
 }
 
 
