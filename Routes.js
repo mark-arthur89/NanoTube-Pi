@@ -14,6 +14,7 @@ function route(httpcontext) {
 	if (typeof handle[pathname] === 'function') {
 		handle[pathname](httpcontext);
 	} else if( pathname.indexOf('web/') > 0 ) {
+		console.log('path is :'+ pathname);
 		requestHandlers.static(httpcontext);
 	} else {
 		console.log('no func avail');
