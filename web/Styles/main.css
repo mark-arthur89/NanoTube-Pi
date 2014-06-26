@@ -40,7 +40,7 @@ NAV ELEMENTS
 .Nav-Item {
 	color: green;
 	font-family: "arial";
-	font-size: 60px;
+	font-size: 4em; /* 60px */
 	display: inline-block;
 }
 
@@ -56,13 +56,13 @@ MAIN BODY ELEMENTS
 
 #Timer {
 	font-family: 'arial';
-	font-size: 80px;
+	font-size: 6em; /* 80px */
 	color: black;
 }
 
 #Shock-Score {
 	font-family: 'arial';
-	font-size: 350px;
+	font-size: 22.000em; /* 350px */
 	color: green;
 	position: absolute;
 	right: 0px;
