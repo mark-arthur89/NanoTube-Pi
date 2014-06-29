@@ -68,3 +68,61 @@ MAIN BODY ELEMENTS
 	right: 0px;
 	bottom: 0px;
 }
+
+/* ----------------------------------------------------------------------------------------------
+MODAL STYLE
+------------------------------------------------------------------------------------------------*/
+
+#Settings-Screen {
+	width: 90%;
+	height: 70%;
+	position: absolute;
+	border: 1px solid #000;
+	background-color: white;
+	top: 80px;
+	-webkit-box-shadow: 5px 5px 5px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 5px 5px 5px 1px rgba(0,0,0,0.75);
+	box-shadow: 5px 5px 5px 1px rgba(0,0,0,0.75);
+}
+
+.left-block{
+	display: inline-block;
+	height: 100%;
+	width: 50%;
+	position: relative;
+}
+
+.right-block {
+	display: inline-block;
+	height: 100%;
+	width: 49%;
+	position: relative;
+	float: right;
+}
+
+#Set-Time {
+	font-family: 'arial';
+	font-size: 3em; /* 80px */
+	color: black;
+	padding: 30px 30px;
+}
+
+.button {
+	text-align: center;
+	width: 100px;
+	height: 50px;
+	padding-top: 50px;
+	border: 1px solid #000;
+	background-color: orange;
+	color: black;
+}
+
+.button:hover{
+	background-color: green;
+}
+
+#Start-Btn {
+
+	margin-top: 100px;
+	margin-left: 100px;
+}
