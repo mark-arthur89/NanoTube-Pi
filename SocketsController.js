@@ -56,8 +56,8 @@ function OnSocketConnection(io) {
 
 // Closes the GPIO connection and resets the point counter
 function ClosePIConnection(){
-	gpio.close(PI-PIN);
-	pointCounter = 0;
+	/* gpio.close(PI-PIN);
+	pointCounter = 0; */
 }
 
 /* Opens the GPIO connction and Listens to shock values on the PIN 
@@ -65,7 +65,7 @@ function ClosePIConnection(){
 */
 function OpenPIConnection(socket) {
 
-	gpio.open(PI-PIN, "input", function(err) {
+	/* gpio.open(PI-PIN, "input", function(err) {
   		// Read PIN Value
 	    gpio.read(PI-PIN, function(err, value) {
 		    if(err) throw err;
@@ -75,7 +75,7 @@ function OpenPIConnection(socket) {
   				socket.emit('shock', { score : pointCounter });
 		  	}
 		});
-	});
+	}); */
 
 }
 
