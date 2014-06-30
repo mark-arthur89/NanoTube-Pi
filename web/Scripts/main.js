@@ -5,6 +5,9 @@ var app = (function(){
 
 	// Variables
 	var socket;
+	var MINS = 2;
+	var seconds = MINS * 60;
+	var timerId;
 
 	// Methods
 	var Init = function(){
@@ -25,17 +28,19 @@ var app = (function(){
 	function RegisterEvents(){
 
 		// A click handler for start
-		$('body').delegate("#socket-open", "click", function(){
+		$('body').delegate("#Start-Btn", "click", function(){
 
 			// List server name
 	  		socket = io('http://localhost');
 			// Open socket connection with server
 			OpenSocket(socket);
 
+			$('#Settings-Screen').css('display','none');
+
 		});
 
 		// A click handler for restart
-		$('body').delegate("#socket-close", "click", function(){
+		$('body').delegate("#Shock-Score", "click", function(){
 			ResetGame(socket);
 		});
 
@@ -69,7 +74,6 @@ var app = (function(){
 
 		socket.on('connection-set', function (data) {
 		    console.log(data);
-		    // socket.emit('my other event', { my: 'data' });
 		 });
 
 
@@ -81,6 +85,8 @@ var app = (function(){
 	  	// Event which captures shocks on nano tube
 	  	socket.on('shock', function (data){
 	  		// TODO : Capture data
+	  		var score = data.score;
+	  		$('#Shock-Score').html(score);
 	  	});
 
 	}
@@ -89,8 +95,17 @@ var app = (function(){
 	// @Param : socketConnetion
 	function StartGame(socket){
 		// TODO : create a setTimeout function to countdown time
+		var time = MINS * 60 * 1000;
 
-		socket.emit('start-game', { data: 'start game' });
+		// Start game 
+		socket.emit('start-game', { data: 'start game' });	
+
+		setTimeout(function(){
+			// Stop the game
+			socket.emit('stop-game', { data: 'stop game' });
+		}, time);
+
+		timerId = setInterval(UpdateTime, 1000);
 
 	}
 
@@ -100,6 +115,16 @@ var app = (function(){
 
 		socket.emit('reset-game', { data: 'reset game counter' });		
 
+	}
+
+	// Updates time on the UI
+	function UpdateTime(){
+		seconds = seconds - 1;
+		$('#Timer').html(seconds);
+
+		if(time == 0){
+			clearInterval(timerId);
+		}
 	}
 
 	/************* End of Socket Methods ***********/
