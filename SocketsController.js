@@ -1,6 +1,7 @@
 // Includes
 var gpio = require("pi-gpio");
-var PI-PIN = 16;
+var PI_PIN = 11;
+var READ_DURATION = 100;
 var pointCounter = 0;
 
 // Methods
@@ -56,8 +57,8 @@ function OnSocketConnection(io) {
 
 // Closes the GPIO connection and resets the point counter
 function ClosePIConnection(){
-	/* gpio.close(PI-PIN);
-	pointCounter = 0; */
+	gpio.close(PI_PIN);
+	pointCounter = 0;
 }
 
 /* Opens the GPIO connction and Listens to shock values on the PIN 
@@ -65,18 +66,41 @@ function ClosePIConnection(){
 */
 function OpenPIConnection(socket) {
 
-	/* gpio.open(PI-PIN, "input", function(err) {
+	// Open Pin
+	gpio.open(PI_PIN, "input", function(err) {
   		// Read PIN Value
-	    gpio.read(PI-PIN, function(err, value) {
-		    if(err) throw err;
-		  	if(value == 1 || value == "1") {
-		  		pointCounter = pointCounter++;
+	    console.log('GPIO PIN open - PIN No is '+ PI_PIN);
+	});
+
+	// Read Values on a set timer schedule
+	setInterval(function() {
+		gpio.read(PI_PIN, function(err, value) {
+			if(err) {
+				console.log('Error : ', err);
+				// Close PIN to flush value and Re-open the PIN
+				FlushandResetPIN();
+			} 
+
+			// Read value from PIN
+			if(value == 1 || value == "1") {
+		  		pointCounter = pointCounter + 1;
 		  		// broadcast count value back to the client
+				console.log('Count is' +pointCounter);
   				socket.emit('shock', { score : pointCounter });
 		  	}
 		});
-	}); */
+	}, READ_DURATION)
 
+}
+
+/* 
+	Resets the PIN and Opens it again
+*/
+function FlushandResetPIN() {
+	gpio.close(PI_PIN);
+	gpio.open(PI_PIN, "input", function(err) {
+		console.log('PIN flushed and Re-opened again'+ PI_PIN)
+	});
 }
 
 exports.OnSocketConnection = OnSocketConnection;
