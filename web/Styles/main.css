@@ -50,8 +50,10 @@ MAIN BODY ELEMENTS
 
 #Main-Body {
 	position: relative;
+	background-color: white;
 	height: 80%;
 	padding: 40px 0px;
+	transition: background-color 0.5s linear;
 }
 
 #Timer {

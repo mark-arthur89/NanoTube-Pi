@@ -131,7 +131,18 @@ var app = (function(){
 			var subMin = _mins * 60;
 			var _seconds = seconds - subMin;
 
-			var _time = _mins == 0 ? _seconds + " Seconds" :  _mins + " Min " + _seconds + " Seconds";
+			var _time = _mins == 0 ? _seconds + " Seconds" :  _mins + " Mins " + _seconds + " Seconds";
+
+			if(seconds == 0)
+				_time = "Game Over";
+
+			// Flash background once for the last 10 seconds
+			if(seconds <= 10) {
+				if(seconds % 2 == 0)
+					$('#Main-Body').css('background-color', '#FFF');
+				else
+					$('#Main-Body').css('background-color', '#FF0000');
+			}
 
 			$('#Timer').html(_time);
 		}
