@@ -12,6 +12,8 @@ var app = (function(){
 	// Methods
 	var Init = function(){
 
+		OnPageLoad();
+
 		$(document).ready(function(){
 			RegisterEvents();
 		});
@@ -35,7 +37,10 @@ var app = (function(){
 			// Open socket connection with server
 			OpenSocket(socket);
 
-			$('#Settings-Screen').css('display','none');
+			$('#Settings-Screen').addClass('hidden');
+			$('#Settings-Screen').css('height', '0%');
+			$('#Settings-Screen .left-block').addClass('hidden');
+			$('#Settings-Screen .right-block').addClass('hidden');
 
 		});
 
@@ -44,13 +49,26 @@ var app = (function(){
 			ResetGame(socket);
 		});
 
+		// Nav item click
+		$('body').delegate(".Nav-Item", "click", function(){
+			$('#Settings-Screen').removeClass('hidden');
+			$('#Settings-Screen').animate({ height: "70%" }, 1000, function() {
+				$('#Settings-Screen .left-block').removeClass('hidden');
+				$('#Settings-Screen .right-block').removeClass('hidden');
+			});
+		});
+
 	}
 
 	// TODO : Do some interactive stuff on page load
 	function OnPageLoad(){
 
-	}
+		$('#Settings-Screen').animate({ height: "70%" }, 1000, function() {
+			$('#Settings-Screen .left-block').removeClass('hidden');
+			$('#Settings-Screen .right-block').removeClass('hidden');
+		});
 
+	}
 
 
 	/************ Socket Methods ***************/
