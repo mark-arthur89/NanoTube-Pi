@@ -95,6 +95,10 @@ var app = (function(){
 	// @Param : socketConnetion
 	function StartGame(socket){
 		// TODO : create a setTimeout function to countdown time
+		var setTime = parseInt($('#time').html());
+		MINS = Math.round(setTime);
+		seconds = MINS * 60;
+
 		var time = MINS * 60 * 1000;
 
 		// Start game 
@@ -112,17 +116,27 @@ var app = (function(){
 	// Reset's the error counter value
 	// @param : socketConnection
 	function ResetGame(socket){
-
 		socket.emit('reset-game', { data: 'reset game counter' });		
-
 	}
 
 	// Updates time on the UI
 	function UpdateTime(){
 		seconds = seconds - 1;
-		$('#Timer').html(seconds);
 
-		if(time == 0){
+		if (seconds >= 0) {
+
+			// Create a neat timer value
+			var _mins = Math.floor( seconds / 60 );
+
+			var subMin = _mins * 60;
+			var _seconds = seconds - subMin;
+
+			var _time = _mins == 0 ? _seconds + " Seconds" :  _mins + " Min " + _seconds + " Seconds";
+
+			$('#Timer').html(_time);
+		}
+
+		if(seconds == 0){
 			clearInterval(timerId);
 		}
 	}

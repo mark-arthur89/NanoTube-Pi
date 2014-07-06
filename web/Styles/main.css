@@ -107,6 +107,11 @@ MODAL STYLE
 	padding: 30px 30px;
 }
 
+#time {
+	color: orange;
+	display: inline-block;
+}
+
 .button {
 	text-align: center;
 	width: 100px;
