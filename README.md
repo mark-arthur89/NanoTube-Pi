@@ -1,7 +1,7 @@
 NanoTube-Pi
 ===========
 
-A simple game which is used as aid to teach kids about Nanotechnology. It's called Nanotube and it involves a meshwire, a ball, electrical sticks and a raspberry pi.
+A simple game which is used as aid an to teach kids about Nanotechnology. It's called Nanotube and it involves a meshwire, a ball, electrical sticks and a raspberry pi.
 
 
 ####################################################################################
