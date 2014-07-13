@@ -49,6 +49,42 @@ NAV ELEMENTS
 	cursor: pointer;
 }
 
+#Team-Legends{
+	display: inline-block;
+}
+
+.Team-1, .Team-2, .Team-3{
+	display: inline-block;
+	padding-right: 20px;
+	text-align: center;
+}
+
+.Name {
+	font-size: 20px;
+	display: inline-block;
+	position: relative;
+	bottom: 18px;
+}
+
+.box-block {
+	height: 50px;
+	width: 50px;
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.box-block.green {
+	background-color: green;
+}
+
+.box-block.brown {
+	background-color: #963D0E;
+}
+
+.box-block.purple {
+	background-color: #811D96;
+}
+
 /*---------------------------------------------------------------------------------------------
 MAIN BODY ELEMENTS
 ----------------------------------------------------------------------------------------------*/
