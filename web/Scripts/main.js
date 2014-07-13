@@ -8,6 +8,7 @@ var app = (function(){
 	var MINS = 2;
 	var seconds = MINS * 60;
 	var timerId;
+	var gameover_STATUS = false;
 
 	// Methods
 	var Init = function(){
@@ -36,6 +37,8 @@ var app = (function(){
 	  		socket = io('http://localhost');
 			// Open socket connection with server
 			OpenSocket(socket);
+
+			gameover_STATUS = false;
 
 			$('#Settings-Screen').addClass('hidden');
 			$('#Settings-Screen').css('height', '0%');
@@ -103,8 +106,28 @@ var app = (function(){
 	  	// Event which captures shocks on nano tube
 	  	socket.on('shock', function (data){
 	  		// TODO : Capture data
-	  		var score = data.score;
-	  		$('#Shock-Score').html(score);
+	  		if(!gameover_STATUS) {
+	  			var score = data.score;
+	  			$('#Shock-Score').html(score);
+	  		}
+	  	});
+
+	  	// Score for Team -2
+	  	socket.on('shock-2', function (data){
+	  		// TODO : Capture data
+	  		if(!gameover_STATUS) {
+	  			var score = data.score;
+	  			$('#Shock-Score-2').html(score);
+	  		}
+	  	});
+
+	  	// Score for Team -3
+	  	socket.on('shock-3', function (data){
+	  		// TODO : Capture data
+	  		if(!gameover_STATUS) {
+	  			var score = data.score;
+	  			$('#Shock-Score-3').html(score);
+	  		}
 	  	});
 
 	}
@@ -124,6 +147,7 @@ var app = (function(){
 
 		setTimeout(function(){
 			// Stop the game
+			gameover_STATUS = true;
 			socket.emit('stop-game', { data: 'stop game' });
 		}, time);
 

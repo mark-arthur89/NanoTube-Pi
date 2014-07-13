@@ -69,13 +69,33 @@ MAIN BODY ELEMENTS
 
 #Shock-Score {
 	font-family: 'arial';
-	font-size: 22.000em; /* 350px */
+	font-size: 20.000em; /* 350px */
 	color: green;
+	display: inline-block;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+
+#Shock-Score-2 {
+	font-family: 'arial';
+	font-size: 20.000em; /* 350px */
+	color: #963D0E;
+	display: inline-block;;
+	position: absolute;
+	left: 45%;
+	bottom: 0px;
+}
+
+#Shock-Score-3 {
+	font-family: 'arial';
+	font-size: 20.000em; /* 350px */
+	color: #811D96;
+	display: inline-block;
 	position: absolute;
 	right: 0px;
 	bottom: 0px;
 }
-
 /* ----------------------------------------------------------------------------------------------
 MODAL STYLE
 ------------------------------------------------------------------------------------------------*/
