@@ -177,20 +177,21 @@ MODAL STYLE
 
 .button {
 	text-align: center;
-	width: 100px;
-	height: 50px;
-	padding-top: 50px;
-	border: 1px solid #000;
-	background-color: orange;
+	font-size: 1.5em;
+	width: 200px;
+	height: 132px;
+	padding-top: 70px;
 	color: black;
+	background-image: url('/web/Images/NanoHex.jpg');
+	background-repeat: no-repeat;
 }
 
 .button:hover{
-	background-color: green;
+	cursor: pointer;
+	text-shadow:2px 2px #D5DED6;
 }
 
 #Start-Btn {
-
 	margin-top: 100px;
 	margin-left: 100px;
 }
